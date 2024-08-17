@@ -1,78 +1,34 @@
-// const getUsersWithFriend = (users, friendName) => {
-// const hasFriends = users.filter(user => user.filter)
+class Storage {
+  #items = [];
 
-// }
-//  users.filter(user => user.friends())
-    
-//       users.map(user => user.name);
-//     }
-  
-  
+  constructor(items) {
+    this.#items = items;
+  }
 
-  
-  
-  
-  const allUsers = [
-    {
-      name: "Moore Hensley",
-      friends: ["Sharron Pace"]
-    },
-    {
-      name: "Sharlene Bush",
-      friends: ["Briana Decker", "Sharron Pace"]
-    },
-    {
-      name: "Ross Vazquez",
-      friends: ["Marilyn Mcintosh", "Padilla Garrison", "Naomi Buckner"]
-    },
-    {
-      name: "Elma Head",
-      friends: ["Goldie Gentry", "Aisha Tran"]
-    },
-    {
-      name: "Carey Barr",
-      friends: ["Jordan Sampson", "Eddie Strong"]
-    },
-    {
-      name: "Blackburn Dotson",
-      friends: ["Jacklyn Lucas", "Linda Chapman"]
-    },
-    {
-      name: "Sheree Anthony",
-      friends: ["Goldie Gentry", "Briana Decker"]
-    }
-  ];
+  getItems() {
+    return this.#items;
+  }
 
- 
+  addItem(newItem) {
+    this.#items.push(newItem);
+  }
 
- const getUsersWithFriend = (allUsers, friendName) => 
-  allUsers.filter(user => user.friends.includes(friendName));
- 
- 
-  console.log(getUsersWithFriend(allUsers,"Briana Decker" ));
-  // console.log(getUsersWithFriend(allUsers, "Briana Decker")); 
-  // [
-  //   {
-  //     name: "Sharlene Bush",
-  //     friends: ["Briana Decker", "Sharron Pace"]
-  //   },
-  //   {
-  //     name: "Sheree Anthony",
-  //     friends: ["Goldie Gentry", "Briana Decker"]
-  //   }
-  // ]
-  
-  console.log(getUsersWithFriend(allUsers, "Goldie Gentry"));
-  // [
-  //   {
-  //     name: "Elma Head",
-  //     friends: ["Goldie Gentry", "Aisha Tran"]
-  //   },
-  //   {
-  //     name: "Sheree Anthony",
-  //     friends: ["Goldie Gentry", "Briana Decker"]
-  //   }
-  // ]
-  
-  console.log(getUsersWithFriend(allUsers, "Adrian Cross" )); // []
-  
+  removeItem(itemToRemove) {
+  const index = this.#items.indexOf(itemToRemove);
+ if(index > -1) {
+  return this.#items.splice(index, 1);
+ }
+  }
+};
+
+const storage = new Storage(["Nanitoids", "Prolonger", "Antigravitator"]);
+console.log(storage.getItems()); // ["Nanitoids", "Prolonger", "Antigravitator"]
+
+storage.addItem("Droid");
+console.log(storage.getItems()); // ["Nanitoids", "Prolonger", "Antigravitator", "Droid"]
+
+ storage.removeItem("Prolonger");
+console.log(storage.getItems()); // ["Nanitoids", "Antigravitator", "Droid"]
+
+storage.removeItem("Scaner");
+console.log(storage.getItems()); // ["Nanitoids", "Antigravitator", "Droid"]
